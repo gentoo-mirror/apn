@@ -4,7 +4,7 @@
 EAPI=7
 inherit git-r3
 
-DESCRIPTION="mpv-mpris is a plugin for mpv which allows control of the player using standard media keys"
+DESCRIPTION="mpv-mpris is a plugin for mpv which allows controlling by standard media keys"
 HOMEPAGE="https://github.com/hoyon/mpv-mpris"
 SRC_URI=""
 EGIT_REPO_URI="https://github.com/hoyon/mpv-mpris.git"

@@ -9,7 +9,7 @@ inherit golang-vcs golang-build
 
 
 
-DESCRIPTION="Execute scripts on IMAP mailbox changes (new/deleted/updated messages) using IDLE, golang version."
+DESCRIPTION="Execute scripts on IMAP mailbox changes using IDLE, golang version."
 HOMEPAGE="https://gitlab.com/shackra/goimapnotify"
 SRC_URI=""
 EGIT_REPO_URI="https://gitlab.com/shackra/goimapnotify.git"
