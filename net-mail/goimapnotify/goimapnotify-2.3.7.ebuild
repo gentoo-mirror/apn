@@ -16,7 +16,7 @@ EGIT_REPO_URI="https://gitlab.com/shackra/goimapnotify.git"
 
 EGO_PN="gitlab.com/shackra/goimapnotify"
 
-LICENSE="GPLv3"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
