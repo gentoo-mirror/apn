@@ -33,6 +33,6 @@ src_unpack() {
 
 src_install() {
 	make
-	insinto /etc/mpv/scirpts
+	insinto /etc/mpv/scripts
 	doins mpris.so
 }
