@@ -1,20 +1,41 @@
-image: apnpucky/gentoo
+image: apnpucky/gentoo-ebuild-ci
 
 stages:
-  - test
+  - local
+  - install
 
 variables:
   NAME: "apn"
 
-
-test:
-  stage: test
-  script:
-    - echo "[${NAME}]">>/etc/portage/repos.conf/${NAME}.conf
-    - echo "location = /var/db/repos/${NAME}" >>/etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-type = git" >>/etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >>/etc/portage/repos.conf/${NAME}.conf
+default:
+  before_script:
+    - echo "[${NAME}]">> /etc/portage/repos.conf/${NAME}.conf
+    - echo "location = /var/db/repos/${NAME}" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-type = git" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
     - emaint -r ${NAME} sync
+
+local-repoman:
+  stage: local
+  before_script: []
+  script:
+    - repoman full -d
+    - repoman -vx full
+
+local-pkgcheck:
+  stage: local
+  before_script: []
+  script:
+    - pkgcheck scan --exit 
+
+repoman:
+  stage: install
+  script:
     - cd /var/db/repos/${NAME}
     - repoman full -d
     - repoman -vx full
+
+pkgcheck:
+  stage: install
+  script:
+    - pkgcheck ci -r ${NAME} --exit 
