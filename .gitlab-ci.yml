@@ -26,8 +26,10 @@ install:
     - echo "location = /var/db/repos/${NAME}" >> /etc/portage/repos.conf/${NAME}.conf
     - echo "sync-type = git" >> /etc/portage/repos.conf/${NAME}.conf
     - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
+    - emaint -r ${NAME} sync
   artifacts:
     paths:
+      - /var/db/repos/${NAME}
       - /etc/portage/repos.conf/${NAME}.conf
     untracked: false
     expire_in: 1 days
@@ -37,7 +39,6 @@ repoman:
   dependencies:
     - install
   script:
-    - emaint -r ${NAME} sync
     - cd /var/db/repos/${NAME}
     - repoman full -d
     - repoman -vx full
@@ -47,6 +48,5 @@ pkgcheck:
   dependencies:
     - install
   script:
-    - emaint -r ${NAME} sync
     - cd /var/db/repos/${NAME}
     - pkgcheck ci -r ${NAME} --exit 
