@@ -6,7 +6,7 @@ stages:
   - post-install
 
 variables:
-  NAME: "hep-forge"
+  NAME: "apn"
 
 local-repoman:
   stage: local
