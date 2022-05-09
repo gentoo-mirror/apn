@@ -1,28 +1,55 @@
 image: apnpucky/gentoo-ebuild-ci
 
 stages:
-  - test
+  - local
+  - install
+  - post-install
 
 variables:
-  NAME: "apn"
+  NAME: "hep-forge"
 
 
 before_script:
-  - echo "[${NAME}]">>/etc/portage/repos.conf/${NAME}.conf
-  - echo "location = /var/db/repos/${NAME}" >>/etc/portage/repos.conf/${NAME}.conf
-  - echo "sync-type = git" >>/etc/portage/repos.conf/${NAME}.conf
-  - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >>/etc/portage/repos.conf/${NAME}.conf
   - emaint -r ${NAME} sync
 
+
+local-repoman:
+  stage: local
+  script:
+    - repoman full -d
+    - repoman -vx full
+
+local-pkgcheck:
+  stage: local
+  script:
+    - pkgcheck scan --exit 
+
+install:
+  stage: install
+  script:
+    - echo "[${NAME}]">> /etc/portage/repos.conf/${NAME}.conf
+    - echo "location = /var/db/repos/${NAME}" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-type = git" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
+  artifacts:
+    paths:
+      - /etc/portage/repos.conf/${NAME}.conf
+    untracked: false
+    expire_in: 1 days
+
 repoman:
-  stage: test
+  stage: post-install
+  dependencies:
+    - install
   script:
     - cd /var/db/repos/${NAME}
     - repoman full -d
     - repoman -vx full
 
 pkgcheck:
-  stage: test
+  stage: post-install
+  dependencies:
+    - install
   script:
     - cd /var/db/repos/${NAME}
-    - pkgcheck scan --exit 
+    - pkgcheck ci -r ${NAME} --exit 
