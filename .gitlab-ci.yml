@@ -7,24 +7,15 @@ variables:
   NAME: "apn"
 
 
-fetch:
-  stage: test
-  script:
-    - echo "[${NAME}]">>/etc/portage/repos.conf/${NAME}.conf
-    - echo "location = /var/db/repos/${NAME}" >>/etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-type = git" >>/etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >>/etc/portage/repos.conf/${NAME}.conf
-    - emaint -r ${NAME} sync
-  artifacts:
-    untracked: true
-    expire_in: 1 day
+before_script:
+  - echo "[${NAME}]">>/etc/portage/repos.conf/${NAME}.conf
+  - echo "location = /var/db/repos/${NAME}" >>/etc/portage/repos.conf/${NAME}.conf
+  - echo "sync-type = git" >>/etc/portage/repos.conf/${NAME}.conf
+  - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >>/etc/portage/repos.conf/${NAME}.conf
+  - emaint -r ${NAME} sync
 
 repoman:
   stage: test
-  dependencies:
-    - fetch
-  needs:
-    - fetch
   script:
     - cd /var/db/repos/${NAME}
     - repoman full -d
@@ -32,9 +23,5 @@ repoman:
 
 pkgcheck:
   stage: test
-  dependencies:
-    - fetch
-  needs:
-    - fetch
   script:
     - pkgcheck ci -r ${NAME} --exit 
