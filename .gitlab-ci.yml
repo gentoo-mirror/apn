@@ -24,4 +24,5 @@ repoman:
 pkgcheck:
   stage: test
   script:
-    - pkgcheck ci -r ${NAME} --exit 
+    - cd /var/db/repos/${NAME}
+    - pkgcheck scan --exit 
