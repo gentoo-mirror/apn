@@ -8,11 +8,6 @@ stages:
 variables:
   NAME: "hep-forge"
 
-
-before_script:
-  - emaint -r ${NAME} sync
-
-
 local-repoman:
   stage: local
   script:
@@ -42,6 +37,7 @@ repoman:
   dependencies:
     - install
   script:
+    - emaint -r ${NAME} sync
     - cd /var/db/repos/${NAME}
     - repoman full -d
     - repoman -vx full
@@ -51,5 +47,6 @@ pkgcheck:
   dependencies:
     - install
   script:
+    - emaint -r ${NAME} sync
     - cd /var/db/repos/${NAME}
     - pkgcheck ci -r ${NAME} --exit 
