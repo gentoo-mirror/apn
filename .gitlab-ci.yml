@@ -1,4 +1,4 @@
-image: apnpucky/gentoo
+image: apnpucky/gentoo-ebuild-ci
 
 stages:
   - test
