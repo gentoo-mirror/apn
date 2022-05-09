@@ -37,4 +37,4 @@ pkgcheck:
   needs:
     - fetch
   script:
-    - pkgcheck ci -r hep-forge --exit 
+    - pkgcheck ci -r ${NAME} --exit 
