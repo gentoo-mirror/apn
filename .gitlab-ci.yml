@@ -4,7 +4,7 @@ stages:
   - test
 
 variables:
-  NAME: "hep-forge"
+  NAME: "apn"
 
 
 before_script:
