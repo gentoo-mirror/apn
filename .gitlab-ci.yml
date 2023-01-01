@@ -15,24 +15,11 @@ default:
     - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
     - emaint -r ${NAME} sync
 
-local-repoman:
-  stage: local
-  before_script: []
-  script:
-    - repoman full -d
-    - repoman -vx full
-
 local-pkgcheck:
   stage: local
   before_script: []
   script:
     - pkgcheck scan --exit 
-
-repoman:
-  stage: install
-  script:
-    - cd /var/db/repos/${NAME}
-    - repoman -vdx full
 
 pkgcheck:
   stage: install
