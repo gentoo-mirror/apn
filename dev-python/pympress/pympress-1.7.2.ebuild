@@ -15,15 +15,15 @@ IUSE="vlc"
 
 RDEPEND="
 	dev-python/watchdog[${PYTHON_USEDEP}]
-    app-text/poppler
-    dev-python/pygobject:3[${PYTHON_USEDEP}]
-    dev-python/python-vlc[${PYTHON_USEDEP}]
-    x11-libs/gtk+:3
-    x11-libs/cairo
-    x11-libs/gdk-pixbuf
+	app-text/poppler
+	dev-python/pygobject:3[${PYTHON_USEDEP}]
+	dev-python/python-vlc[${PYTHON_USEDEP}]
+	x11-libs/gtk+:3
+	x11-libs/cairo
+	x11-libs/gdk-pixbuf
 "
 BDEPEND="${RDEPEND}"
 
 pkg_postinst() {
-        optfeature "gstreamer support" media-libs/gstreamer
+	optfeature "gstreamer support" media-libs/gstreamer
 }
