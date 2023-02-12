@@ -17,10 +17,10 @@ RDEPEND="
 	dev-python/watchdog[${PYTHON_USEDEP}]
 	app-text/poppler
 	dev-python/pygobject:3[${PYTHON_USEDEP}]
-	dev-python/python-vlc[${PYTHON_USEDEP}]
 	x11-libs/gtk+:3
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf
+	vlc? ( dev-python/python-vlc[${PYTHON_USEDEP}] )
 "
 BDEPEND="${RDEPEND}"
 
