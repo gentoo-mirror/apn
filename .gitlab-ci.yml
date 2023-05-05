@@ -1,27 +1,338 @@
-image: apnpucky/gentoo-ebuild-ci
-
 stages:
-  - local
-  - install
+  - checksingle
+  - build
+  - test
+  - qa
+  - checkall
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH=="master") || $TEST_ALL == "1" || $PROBABILITY
 
 variables:
-  NAME: "apn"
+  REPO_NAME: "apn"
 
+# TOOD transition to less bloated containers
 default:
+  image: apnpucky/gentoo-hep-forge:latest
+
+.images: &images
+  IMAGE:
+    [
+      apnpucky/gentoo-hep-forge:latest,
+      apnpucky/gentoo-hep-forge-unstable:latest,
+    ]
+
+.matrix1: &matrix1
+  parallel:
+    matrix:
+      - PKG: [metamorph]
+        VERSION: [9999,0.0.13]
+        CATEGORY: ["dev-python"]
+        <<: *images
+
+.matrix2: &matrix2
+  parallel:
+    matrix:
+      - PKG: [pympress]
+        VERSION: ["1.7.2"]
+        CATEGORY: ["dev-python"]
+        <<: *images
+
+.matrix2_1: &matrix2_1
+  parallel:
+    matrix:
+      - PKG: [mpDris2]
+        VERSION: [9999, '0.8']
+        CATEGORY: ["media-sound"]
+        <<: *images
+
+.matrix3: &matrix3
+  parallel:
+    matrix:
+      - PKG: [mpv-mpris]
+        VERSION: [9999,'0.5']
+        CATEGORY: ["media-sound"]
+        <<: *images
+
+.matrix4: &matrix4
+  parallel:
+    matrix:
+      - PKG: [goimapnotify]
+        VERSION: [2.3.7]
+        CATEGORY: ["net-mail"]
+        <<: *images
+
+.matrix5: &matrix5
+  parallel:
+    matrix:
+      - PKG: [sklearn2pmml]
+        VERSION: ["0.92.0"]
+        CATEGORY: ["sci-libs"]
+        <<: *images
+
+.matrix6: &matrix6
+  parallel:
+    matrix:
+      - PKG: [particle]
+        VERSION: [0.22.0, 0.21.1]
+        CATEGORY: ["sci-physics"]
+        <<: *images
+
+.config:
   before_script:
-    - echo "[${NAME}]">> /etc/portage/repos.conf/${NAME}.conf
-    - echo "location = /var/db/repos/${NAME}" >> /etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-type = git" >> /etc/portage/repos.conf/${NAME}.conf
-    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
-    - emaint -r ${NAME} sync
+    - emaint -r ${REPO_NAME} sync
+    - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
+    - ACCEPT_KEYWORDS="~amd64" emerge -q '>=app-portage/pkg-testing-tools-0.1.2'
+    - echo 'dev-util/hermes ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'dev-python/uncertainties ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'dev-python/toposort ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'sci-physics/root ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
+    - echo '*/*::${REPO_NAME} ~amd64' > /etc/portage/package.accept_keywords/${REPO_NAME}
+    - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
+    - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH=="master") || $TEST_ALL == "1" || $PROBABILITY
+      changes:
+        - "$CATEGORY/$PKG/$PKG-$VERSION*.ebuild"
+        - "$CATEGORY/$PKG/metadata.xml"
+        - "$CATEGORY/$PKG/Manifest"
+        - "$CATEGORY/$PKG/files/*"
+        - "$CATEGORY/$PKG/.build"
+        - ".build"
 
 local-pkgcheck:
-  stage: local
+  image: apnpucky/gentoo-ebuild-ci
+  stage: checkall
   before_script: []
   script:
-    - pkgcheck scan --exit 
+    - pkgcheck scan --exit
 
-pkgcheck:
-  stage: install
+global-pkgcheck:
+  image: apnpucky/gentoo-ebuild-ci
+  stage: checkall
+  before_script:
+    - echo "[${REPO_NAME}]">> /etc/portage/repos.conf/${REPO_NAME}.conf
+    - echo "location = /var/db/repos/${REPO_NAME}" >> /etc/portage/repos.conf/${REPO_NAME}.conf
+    - echo "sync-type = git" >> /etc/portage/repos.conf/${REPO_NAME}.conf
+    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${REPO_NAME}.git" >> /etc/portage/repos.conf/${REPO_NAME}.conf
+    - emaint -r ${REPO_NAME} sync
+    - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
   script:
-    - pkgcheck ci -r ${NAME} --exit 
+    - pkgcheck ci -r ${REPO_NAME} --exit
+
+.check:
+  image: apnpucky/gentoo-ebuild-ci
+  extends: .config
+  stage: checksingle
+  before_script: []
+  script:
+    - pkgcheck scan "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --exit
+
+.warn:
+  image: apnpucky/gentoo-ebuild-ci
+  extends: .config
+  stage: checksingle
+  before_script: []
+  script:
+    - pkgcheck scan "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --exit warning || exit 137
+  allow_failure:
+    exit_codes: 137
+
+.build:
+  stage: build
+  needs: []
+  extends: .config
+  script:
+    - USE="-root" emerge "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y 2>&1 | tee "build_$CATEGORY_$PKG-$VERSION.log";
+  artifacts:
+    when: always
+    paths:
+      - "build_*.log"
+    expire_in: 1 week
+
+.test:
+  stage: test
+  extends: .config
+  script:
+    - if [[ -n $PROBABILITY ]] && [[ $(( RANDOM % 101 )) -gt $PROBABILITY ]] ; then exit 137 ; fi
+    - if grep -Fq "python-single-r1" $CATEGORY/$PKG/$PKG-$VERSION*.ebuild;
+      then
+      inherit() { sleep 0; } &&
+      source $CATEGORY/$PKG/$PKG-$VERSION*.ebuild &&
+      for PY in ${PYTHON_COMPAT[@]}; do
+      echo "Testing single python $PY" &&
+      PYTHON_SINGLE_TARGET="$PY" pkg-testing-tool --append-emerge "--autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y" --max-use-combinations 32 --ccache --extra-env-file 'test.conf' --test-feature-scope always --append-required-use "^^ ( python_single_target_python3_11 python_single_target_python3_10  python_single_target_python3_9 ) python_single_target_$PY -root" -p "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --report test_$CATEGORY_$PKG-$VERSION-$PY.json 2>&1 | tee -a test_$CATEGORY_$PKG-$VERSION-$PY.log ;
+      done;
+      else
+      if grep -Fq "lua-single" $CATEGORY/$PKG/$PKG-$VERSION*.ebuild;
+      then
+      inherit() { sleep 0; } &&
+      source $CATEGORY/$PKG/$PKG-$VERSION*.ebuild &&
+      for LUA in ${LUA_COMPAT[@]}; do
+      if [ "$LUA" != "lua5-2" ]; then
+      echo "Testing single lua $LUA" &&
+      LUA_SINGLE_TARGET="$LUA" pkg-testing-tool --append-emerge "--autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y" --max-use-combinations 32 --ccache --extra-env-file 'test.conf' --test-feature-scope always --append-required-use "^^ ( lua_single_target_lua5-1 lua_single_target_lua5-3 lua_single_target_lua5-4 ) lua_single_target_$LUA -root" -p "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --report test_$CATEGORY_$PKG-$VERSION-$LUA.json 2>&1 | tee -a test_$CATEGORY_$PKG-$VERSION-$LUA.log ;
+      fi
+      done;
+      else
+      echo "Non single test" &&
+      pkg-testing-tool --append-emerge "--autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y" --max-use-combinations 32 --ccache --extra-env-file 'test.conf' --append-required-use "!root" --test-feature-scope always -p "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --report test_$CATEGORY_$PKG-$VERSION.json 2>&1 | tee "test_$CATEGORY_$PKG-$VERSION.log";
+      fi
+      fi
+  artifacts:
+    when: always
+    paths:
+      - "test_*.log"
+      - "test*.json"
+    expire_in: 1 week
+  allow_failure:
+    exit_codes: 137
+
+.qa:
+  stage: qa
+  extends: .config
+  script:
+    - ls *.log
+    - (! grep -A5 -B5 "QA Notice" test_$CATEGORY_$PKG-$VERSION*.log)
+  allow_failure: true
+
+check1:
+  extends: .check
+  <<: *matrix1
+
+warn1:
+  extends: .warn
+  <<: *matrix1
+
+build1:
+  extends: .build
+  <<: *matrix1
+
+test1:
+  extends: .test
+  <<: *matrix1
+
+qa1:
+  extends: .qa
+  <<: *matrix1
+
+check2:
+  extends: .check
+  <<: *matrix2
+
+warn2:
+  extends: .warn
+  <<: *matrix2
+
+build2:
+  extends: .build
+  <<: *matrix2
+
+test2:
+  extends: .test
+  <<: *matrix2
+
+qa2:
+  extends: .qa
+  <<: *matrix2
+
+check2_1:
+  extends: .check
+  <<: *matrix2_1
+
+warn2_1:
+  extends: .warn
+  <<: *matrix2_1
+
+build2_1:
+  extends: .build
+  <<: *matrix2_1
+
+test2_1:
+  extends: .test
+  <<: *matrix2_1
+
+qa2_1:
+  extends: .qa
+  <<: *matrix2_1
+
+check3:
+  extends: .check
+  <<: *matrix3
+
+warn3:
+  extends: .warn
+  <<: *matrix3
+
+build3:
+  extends: .build
+  <<: *matrix3
+
+test3:
+  extends: .test
+  <<: *matrix3
+
+qa3:
+  extends: .qa
+  <<: *matrix3
+
+check4:
+  extends: .check
+  <<: *matrix4
+
+warn4:
+  extends: .warn
+  <<: *matrix4
+
+build4:
+  extends: .build
+  <<: *matrix4
+
+test4:
+  extends: .test
+  <<: *matrix4
+
+qa4:
+  extends: .qa
+  <<: *matrix4
+
+check5:
+  extends: .check
+  <<: *matrix5
+
+warn5:
+  extends: .warn
+  <<: *matrix5
+
+build5:
+  extends: .build
+  <<: *matrix5
+
+test5:
+  extends: .test
+  <<: *matrix5
+
+qa5:
+  extends: .qa
+  <<: *matrix5
+
+check6:
+  extends: .check
+  <<: *matrix6
+
+warn6:
+  extends: .warn
+  <<: *matrix6
+
+build6:
+  extends: .build
+  <<: *matrix6
+
+test6:
+  extends: .test
+  <<: *matrix6
+
+qa6:
+  extends: .qa
+  <<: *matrix6

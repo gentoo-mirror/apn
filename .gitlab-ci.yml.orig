@@ -1,0 +1,27 @@
+image: apnpucky/gentoo-ebuild-ci
+
+stages:
+  - local
+  - install
+
+variables:
+  NAME: "apn"
+
+default:
+  before_script:
+    - echo "[${NAME}]">> /etc/portage/repos.conf/${NAME}.conf
+    - echo "location = /var/db/repos/${NAME}" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-type = git" >> /etc/portage/repos.conf/${NAME}.conf
+    - echo "sync-uri = https://gitlab.com/APN-Pucky/gentoo-${NAME}.git" >> /etc/portage/repos.conf/${NAME}.conf
+    - emaint -r ${NAME} sync
+
+local-pkgcheck:
+  stage: local
+  before_script: []
+  script:
+    - pkgcheck scan --exit 
+
+pkgcheck:
+  stage: install
+  script:
+    - pkgcheck ci -r ${NAME} --exit 
