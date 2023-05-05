@@ -14,20 +14,20 @@ variables:
 
 # TOOD transition to less bloated containers
 default:
-  image: apnpucky/gentoo-hep-forge:latest
+  image: apnpucky/gentoo-apn:latest
 
 .images: &images
   IMAGE:
     [
-      apnpucky/gentoo-hep-forge:latest,
-      apnpucky/gentoo-hep-forge-unstable:latest,
+      apnpucky/gentoo-apn:latest,
+      apnpucky/gentoo-apn-unstable:latest,
     ]
 
 .matrix1: &matrix1
   parallel:
     matrix:
       - PKG: [metamorph]
-        VERSION: [9999,0.0.13]
+        VERSION: [9999, 0.0.13]
         CATEGORY: ["dev-python"]
         <<: *images
 
