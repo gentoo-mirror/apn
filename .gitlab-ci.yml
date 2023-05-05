@@ -50,9 +50,9 @@ default:
 .matrix3: &matrix3
   parallel:
     matrix:
-      - PKG: [mpv-mpris]
-        VERSION: [9999,'0.5']
-        CATEGORY: ["media-sound"]
+      - PKG: [goimapnotify]
+        VERSION: [2.3.7]
+        CATEGORY: ["net-mail"]
         <<: *images
 
 .matrix4: &matrix4
@@ -66,17 +66,17 @@ default:
 .matrix5: &matrix5
   parallel:
     matrix:
-      - PKG: [sklearn2pmml]
-        VERSION: ["0.92.0"]
-        CATEGORY: ["sci-libs"]
+      - PKG: [goimapnotify]
+        VERSION: [2.3.7]
+        CATEGORY: ["net-mail"]
         <<: *images
 
 .matrix6: &matrix6
   parallel:
     matrix:
-      - PKG: [particle]
-        VERSION: [0.22.0, 0.21.1]
-        CATEGORY: ["sci-physics"]
+      - PKG: [goimapnotify]
+        VERSION: [2.3.7]
+        CATEGORY: ["net-mail"]
         <<: *images
 
 .config:
