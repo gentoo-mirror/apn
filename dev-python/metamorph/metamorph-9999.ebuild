@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=poetry
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 inherit distutils-r1
 
 REPO=APN-Pucky
@@ -26,21 +26,23 @@ LICENSE="MIT"
 SLOT="0"
 
 RDEPEND="
-	dev-python/termcolor
-	dev-python/deep-translator
-	dev-python/colorama
-	dev-python/pyyaml
+	dev-python/termcolor[${PYTHON_USEDEP}]
+	dev-python/deep-translator[${PYTHON_USEDEP}]
+	dev-python/colorama[${PYTHON_USEDEP}]
+	dev-python/pyyaml[${PYTHON_USEDEP}]
+	test? (
+		dev-python/pytest-cov[${PYTHON_USEDEP}]
+		dev-python/pandas[${PYTHON_USEDEP}]
+	)
 "
 BDEPEND="${RDEPEND}"
 
 src_prepare() {
-    default
+	default
 	# Don't use dynamic versioning 	
-	sed -i "s/version.*=.*\"0\.0\.0\"/version = \"${PV}\"/" pyproject.toml 	|| die
-	sed -i "s/requires.*=.*/requires = [\"poetry-core>=1.0.0\"]/" pyproject.toml 	|| die
-	sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/g' pyproject.toml|| die
+	sed -i "s/version.*=.*\"0\.0\.0\"/version = \"${PV}\"/" pyproject.toml || die
+	sed -i "s/requires.*=.*/requires = [\"poetry-core>=1.0.0\"]/" pyproject.toml || die
+	sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/g' pyproject.toml || die
 }
 
-# TODO needs test deps
-#distutils_enable_tests pytest
-
+distutils_enable_tests pytest
