@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND="media-sound/mpd
 		sys-apps/dbus
-		dev-python/python-mpd
+		dev-python/python-mpd2
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
