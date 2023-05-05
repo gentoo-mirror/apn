@@ -12,7 +12,6 @@ workflow:
 variables:
   REPO_NAME: "apn"
 
-# TOOD transition to less bloated containers
 default:
   image: apnpucky/gentoo-apn:latest
 
