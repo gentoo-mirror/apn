@@ -16,11 +16,7 @@ default:
   image: apnpucky/gentoo-apn:latest
 
 .images: &images
-  IMAGE:
-    [
-      apnpucky/gentoo-apn:latest,
-      apnpucky/gentoo-apn-unstable:latest,
-    ]
+  IMAGE: [apnpucky/gentoo-apn:latest, apnpucky/gentoo-apn-unstable:latest]
 
 .matrix1: &matrix1
   parallel:
@@ -42,7 +38,7 @@ default:
   parallel:
     matrix:
       - PKG: [mpDris2]
-        VERSION: [9999, '0.8']
+        VERSION: [9999, "0.8"]
         CATEGORY: ["media-sound"]
         <<: *images
 
@@ -57,9 +53,9 @@ default:
 .matrix4: &matrix4
   parallel:
     matrix:
-      - PKG: [goimapnotify]
-        VERSION: [2.3.7]
-        CATEGORY: ["net-mail"]
+      - PKG: [pipx]
+        VERSION: [1.2.0]
+        CATEGORY: ["dev-python"]
         <<: *images
 
 .matrix5: &matrix5
