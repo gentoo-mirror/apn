@@ -23,6 +23,7 @@ BDEPEND="
 	"
 RDEPEND="
 	dev-python/userpath
+    dev-python/argcomplete
 	"
 
 python_prepare_all() {
