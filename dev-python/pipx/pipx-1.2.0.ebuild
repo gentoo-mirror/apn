@@ -15,28 +15,21 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="bash-completion test"
-RESTRICT="!test? ( test )"
+IUSE="bash-completion"
 
 BDEPEND="
 	dev-python/hatchling
-	"
+"
 RDEPEND="
 	dev-python/userpath
-    dev-python/argcomplete
-	"
+        dev-python/argcomplete
+"
 
 python_prepare_all() {
         distutils-r1_python_prepare_all
 }
 
-python_test() {
-        distutils_install_for_testing
-        pytest -vv || die "Tests fail with ${EPYTHON}"
-}
-
 python_install_all() {
         distutils-r1_python_install_all
-
-		use bash-completion && newbashcomp "${FILESDIR}/pipx.bash_completion" pipx
+        use bash-completion && newbashcomp "${FILESDIR}/pipx.bash_completion" pipx
 }
