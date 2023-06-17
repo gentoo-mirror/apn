@@ -22,7 +22,7 @@ default:
   parallel:
     matrix:
       - PKG: [metamorph]
-        VERSION: [9999, 0.0.13]
+        VERSION: ["metamorph-9999.ebuild",9999, 0.0.13]
         CATEGORY: ["dev-python"]
         <<: *images
 
