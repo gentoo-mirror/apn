@@ -2,11 +2,10 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
-inherit distutils-r1 optfeature
+inherit distutils-r1 optfeature pypi
 
 DESCRIPTION="Pympress is a PDF presentation tool designed for dual-screen setups such as presentations and public talks."
 HOMEPAGE="https://github.com/Cimbali/pympress"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
