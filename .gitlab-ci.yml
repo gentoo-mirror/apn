@@ -81,9 +81,9 @@ default:
 .matrix6: &matrix6
   parallel:
     matrix:
-      - PKG: [goimapnotify]
+      - PKG: [tyrant_optimize]
         VERSION: [2.3.7]
-        CATEGORY: ["net-mail"]
+        CATEGORY: ["games-simulation"]
         <<: *images
 
 .config:
