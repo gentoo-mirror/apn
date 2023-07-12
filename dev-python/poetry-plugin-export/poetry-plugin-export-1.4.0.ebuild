@@ -29,6 +29,6 @@ DEPEND="
 
 MY_P="${PN}-${NOPATCH_V}${PATCH_V}"
 
-S="${WORKDIR}/${UNDER_PN}-${PV}"
+#S="${WORKDIR}/${UNDER_PN}-${PV}"
 
 distutils_enable_tests pytest
