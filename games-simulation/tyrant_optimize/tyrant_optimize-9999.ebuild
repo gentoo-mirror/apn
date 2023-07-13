@@ -1,7 +1,5 @@
 EAPI=8
 
-inherit git-r3
-
 DESCRIPTION="Simulator for the card game tyrant_unleashed."
 EGIT_REPO_URI="https://gitlab.com/APN-Pucky/tyrant_optimize"
 
@@ -14,7 +12,9 @@ RDEPEND="
 "
 
 if [[ ${PV} == 9999 ]]; then
+    inherit git-r3
 else
+    inherit git-r3
     EGIT_COMMIT="v${PV}"
     KEYWORDS="~amd64"
 fi
