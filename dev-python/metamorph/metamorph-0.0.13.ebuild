@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=poetry
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 inherit distutils-r1
 
 REPO=APN-Pucky
@@ -34,7 +34,7 @@ RDEPEND="
 BDEPEND="${RDEPEND}"
 
 src_configure() {
-    default
+	default
 	# Don't use dynamic versioning
 	sed -i "s/version.*=.*\"0\.0\.0\"/version = \"${PV}\"/" pyproject.toml || die
 	sed -i "s/requires.*=.*/requires = [\"poetry-core>=1.0.0\"]/" pyproject.toml || die
