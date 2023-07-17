@@ -16,17 +16,17 @@ default:
   image: apnpucky/gentoo-apn:latest
 
 .images: &images
-  IMAGE:
-    [
-      apnpucky/gentoo-apn:latest,
-      apnpucky/gentoo-apn-unstable:latest,
-    ]
+  IMAGE: [apnpucky/gentoo-apn:latest, apnpucky/gentoo-apn-unstable:latest]
 
 .matrix1: &matrix1
   parallel:
     matrix:
       - PKG: [metamorph]
         VERSION: [9999, 0.0.13]
+        CATEGORY: ["dev-python"]
+        <<: *images
+      - PKG: [deep-translator]
+        VERSION: [9999, 1.9.1]
         CATEGORY: ["dev-python"]
         <<: *images
 
@@ -37,12 +37,20 @@ default:
         VERSION: ["1.7.2"]
         CATEGORY: ["dev-python"]
         <<: *images
+      - PKG: [poetry]
+        VERSION: [1.4.1, 1.3.1]
+        CATEGORY: ["dev-python"]
+        <<: *images
+      - PKG: [poetry_dynamic_versioning]
+        VERSION: [9999, 0.25.0, 0.21.1]
+        CATEGORY: ["dev-python"]
+        <<: *images
 
 .matrix2_1: &matrix2_1
   parallel:
     matrix:
       - PKG: [mpDris2]
-        VERSION: [9999, '0.8']
+        VERSION: [9999, "0.8"]
         CATEGORY: ["media-sound"]
         <<: *images
 
@@ -57,9 +65,9 @@ default:
 .matrix4: &matrix4
   parallel:
     matrix:
-      - PKG: [goimapnotify]
-        VERSION: [2.3.7]
-        CATEGORY: ["net-mail"]
+      - PKG: [pipx]
+        VERSION: [1.2.0]
+        CATEGORY: ["dev-python"]
         <<: *images
 
 .matrix5: &matrix5
@@ -80,7 +88,7 @@ default:
 
 .config:
   before_script:
-    - emaint -r ${REPO_NAME} sync
+    - emerge --sync || emaint -r ${REPO_NAME} sync
     - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
     - ACCEPT_KEYWORDS="~amd64" emerge -q '>=app-portage/pkg-testing-tools-0.1.2'
     - echo 'dev-util/hermes ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
@@ -95,7 +103,6 @@ default:
       changes:
         - "$CATEGORY/$PKG/$PKG-$VERSION*.ebuild"
         - "$CATEGORY/$PKG/metadata.xml"
-        - "$CATEGORY/$PKG/Manifest"
         - "$CATEGORY/$PKG/files/*"
         - "$CATEGORY/$PKG/.build"
         - ".build"

@@ -5,12 +5,11 @@ EAPI=8
 
 DISTUTILS_USE_PEP517=poetry
 PYTHON_COMPAT=( python3_{9..11} )
-PYPI_NO_NORMALIZE=1
 inherit distutils-r1
 
-REPO=nidhaloff
+REPO=mtkennerly
 
-DESCRIPTION="Translation for humans"
+DESCRIPTION="Library and command line tool for producing version strings"
 HOMEPAGE="
 	https://github.com/${REPO}/${PN}
 	https://pypi.org/project/${PN}/
@@ -27,9 +26,10 @@ LICENSE="MIT"
 SLOT="0"
 
 RDEPEND="
-	>=dev-python/beautifulsoup4-4.9.1
-	>=dev-python/requests-2.23.0
+	>=dev-python/packaging-20.9[${PYTHON_USEDEP}]
+	>=dev-python/importlib_metadata-1.6.0[${PYTHON_USEDEP}]
 "
 BDEPEND="${RDEPEND}"
-# TODO needs test deps
+
+#TODO enable test
 #distutils_enable_tests pytest
