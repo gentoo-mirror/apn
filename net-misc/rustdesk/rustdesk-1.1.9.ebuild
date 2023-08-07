@@ -5,8 +5,8 @@ EAPI=7
 
 inherit unpacker xdg
 
-DESCRIPTION="Cryptocurrency Wallet"
-HOMEPAGE="https://www.exodus.com/"
+DESCRIPTION="Rustdesk"
+HOMEPAGE="https://www.rustdesk.com/"
 
 SRC_URI="https://github.com/rustdesk/${PN}/releases/download/${PV}/${P}.deb"
 
@@ -17,7 +17,9 @@ IUSE=""
 
 QA_PREBUILT="*"
 
-DEPEND=""
+DEPEND="
+	x11-misc/xdotool
+"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
