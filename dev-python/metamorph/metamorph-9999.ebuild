@@ -43,6 +43,8 @@ src_prepare() {
 	sed -i "s/version.*=.*\"0\.0\.0\"/version = \"${PV}\"/" pyproject.toml || die
 	sed -i "s/requires.*=.*/requires = [\"poetry-core>=1.0.0\"]/" pyproject.toml || die
 	sed -i 's/poetry_dynamic_versioning.backend/poetry.core.masonry.api/g' pyproject.toml || die
+	#rm --cov=metamorph --cov-config=.coveragerc --cov-append --cov-report=term --cov-report=xml
+	sed -i 's/--cov[-=.0-9a-zA-Z]*//g' pyproject.toml || die
 }
 
 distutils_enable_tests pytest
