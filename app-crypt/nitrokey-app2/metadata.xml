@@ -10,7 +10,6 @@
 	</longdescription>
 	<upstream>
 		<remote-id type="github">Nitrokey/nitrokey-app2</remote-id>
-		<remote-id type="pypi">nitrokey-app2</remote-id>
 	</upstream>
 </pkgmetadata>
 
