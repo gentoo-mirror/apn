@@ -22,5 +22,9 @@ else
 fi
 
 RDEPEND="
-    dev-python/pynitrokey
+    dev-python/pyqt5
+    dev-python/pyqt5-stubs
+    dev-python/pyudev
+    ~dev-python/pynitrokey-0.4.38
+    dev-python/qt_material
 "

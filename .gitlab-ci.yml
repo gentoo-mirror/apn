@@ -41,6 +41,14 @@ default:
         VERSION: [9999, 0.21.1]
         CATEGORY: ["dev-python"]
         <<: *images
+      - PKG: [pynitrokey]
+        VERSION: [9999, 0.4.38]
+        CATEGORY: ["dev-python"]
+        <<: *images
+      - PKG: [nitrokey-app2]
+        VERSION: [9999, 0.4.38]
+        CATEGORY: ["app-crypt"]
+        <<: *images
 
 .matrix2_1: &matrix2_1
   parallel:
