@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>alexander@neuwirth-informatik.de</email>
+		<name>Alexander Puck Neuwirth</name>
+	</maintainer>
+
+	<longdescription lang="en">
+    Simulator for the card game tyrant_unleashed.
+	</longdescription>
+    <upstream>
+		<remote-id type="github">APN-Pucky/tyrant_optimize</remote-id>
+	</upstream>
+</pkgmetadata>
