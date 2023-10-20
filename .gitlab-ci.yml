@@ -89,6 +89,10 @@ default:
         VERSION: [9999, 6.4.2]
         CATEGORY: ["games-simulation"]
         <<: *images
+      - PKG: [spsdk]
+        VERSION: [1.1.0,1.11.0]
+        CATEGORY: ["dev-python"]
+        <<: *images
 
 .config:
   before_script:
