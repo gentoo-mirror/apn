@@ -12,6 +12,8 @@ DESCRIPTION="This application allows to manage Nitrokey 3 devices"
 HOMEPAGE="
     https://github.com/Nitrokey/nitrokey-app2/
 "
+SLOT="0"
+LICENSE="Apache-2.0"
 
 if [[ ${PV} == 9999 ]]; then
     inherit git-r3
@@ -22,5 +24,9 @@ else
 fi
 
 RDEPEND="
+    dev-python/PyQt5
+    dev-python/PyQt5-stubs
+    dev-python/pyudev
     dev-python/pynitrokey
+    dev-python/qt-material
 "

@@ -46,7 +46,7 @@ default:
         CATEGORY: ["dev-python"]
         <<: *images
       - PKG: [nitrokey-app2]
-        VERSION: [9999, 0.4.38]
+        VERSION: [9999, 2.1.2]
         CATEGORY: ["app-crypt"]
         <<: *images
 
