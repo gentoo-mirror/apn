@@ -44,3 +44,4 @@ RDEPEND="
     dev-python/click-aliases
     dev-python/semver
 "
+RESTRICT="test"
