@@ -30,3 +30,8 @@ RDEPEND="
     ~dev-python/pynitrokey-0.4.38
     dev-python/qt-material
 "
+
+src_compile() {
+    make build-ui
+    distutils-r1_src_compile
+}
