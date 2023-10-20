@@ -1,6 +1,6 @@
 EAPI=8
 PYPI_NO_NORMALIZE=1
-DISTUTILS_USE_PEP517=flit
+DISTUTILS_USE_PEP517=setuptools
 PYTHON_COMPAT=( python3_{9..11} )
 
 inherit distutils-r1
