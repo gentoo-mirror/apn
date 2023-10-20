@@ -27,7 +27,7 @@ RDEPEND="
     dev-python/PyQt5
     dev-python/PyQt5-stubs
     dev-python/pyudev
-    dev-python/pynitrokey
+    app-crypt/pynitrokey
     dev-python/qt-material
 "
 

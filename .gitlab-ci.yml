@@ -34,7 +34,7 @@ default:
   parallel:
     matrix:
       - PKG: [pympress]
-        VERSION: ["1.7.2"]
+        VERSION: [1.8.4, "1.7.2"]
         CATEGORY: ["dev-python"]
         <<: *images
       - PKG: [poetry-dynamic-versioning]
@@ -42,8 +42,8 @@ default:
         CATEGORY: ["dev-python"]
         <<: *images
       - PKG: [pynitrokey]
-        VERSION: [9999, 0.4.38]
-        CATEGORY: ["dev-python"]
+        VERSION: [9999, 0.4.40, 0.4.38]
+        CATEGORY: ["app-crypt"]
         <<: *images
       - PKG: [nitrokey-app2]
         VERSION: [9999, 2.1.2]
