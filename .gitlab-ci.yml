@@ -117,7 +117,10 @@ default:
 local-pkgcheck:
   image: apnpucky/gentoo-ebuild-ci
   stage: checkall
-  before_script: []
+  before_script: 
+    - emerge app-eselect/eselect-repository
+    - eselect repository enable guru && emaint -r guru sync
+    - eselect repository enable jjakob && emaint -r jjakob sync
   script:
     - pkgcheck scan --exit
 
@@ -125,6 +128,9 @@ global-pkgcheck:
   image: apnpucky/gentoo-ebuild-ci
   stage: checkall
   before_script:
+    - emerge app-eselect/eselect-repository
+    - eselect repository enable guru && emaint -r guru sync
+    - eselect repository enable jjakob && emaint -r jjakob sync
     - echo "[${REPO_NAME}]">> /etc/portage/repos.conf/${REPO_NAME}.conf
     - echo "location = /var/db/repos/${REPO_NAME}" >> /etc/portage/repos.conf/${REPO_NAME}.conf
     - echo "sync-type = git" >> /etc/portage/repos.conf/${REPO_NAME}.conf
@@ -138,7 +144,10 @@ global-pkgcheck:
   image: apnpucky/gentoo-ebuild-ci
   extends: .config
   stage: checksingle
-  before_script: []
+  before_script: 
+    - emerge app-eselect/eselect-repository
+    - eselect repository enable guru && emaint -r guru sync
+    - eselect repository enable jjakob && emaint -r jjakob sync
   script:
     - pkgcheck scan "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --exit
 
@@ -146,7 +155,10 @@ global-pkgcheck:
   image: apnpucky/gentoo-ebuild-ci
   extends: .config
   stage: checksingle
-  before_script: []
+  before_script: 
+    - emerge app-eselect/eselect-repository
+    - eselect repository enable guru && emaint -r guru sync
+    - eselect repository enable jjakob && emaint -r jjakob sync
   script:
     - pkgcheck scan "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --exit warning || exit 137
   allow_failure:
