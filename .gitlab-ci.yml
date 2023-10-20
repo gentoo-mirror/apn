@@ -78,7 +78,7 @@ default:
   parallel:
     matrix:
       - PKG: [tyrant_optimize]
-        VERSION: [2.3.7]
+        VERSION: [9999, 6.4.2]
         CATEGORY: ["games-simulation"]
         <<: *images
 
