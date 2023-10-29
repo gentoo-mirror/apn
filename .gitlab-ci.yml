@@ -93,8 +93,15 @@ default:
         VERSION: [1.1.0,1.11.0]
         CATEGORY: ["dev-python"]
         <<: *images
+      - PKG: [xmrig]
+        ARCH: ["", arm64, arm]
+        VERSION: [6.20.0-r2]
+        CATEGORY: ["net-misc"]
+        <<: *images
 
 .config:
+  tags:
+    - $ARCH
   before_script:
     - emerge --sync || emaint -r ${REPO_NAME} sync
     - emerge app-eselect/eselect-repository
@@ -105,9 +112,6 @@ default:
     - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
     - ACCEPT_KEYWORDS="~amd64" emerge -q '>=app-portage/pkg-testing-tools-0.1.2'
     - echo 'dev-util/hermes ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'dev-python/uncertainties ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'dev-python/toposort ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'sci-physics/root ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
     - echo "*/*::${REPO_NAME} ~amd64" > /etc/portage/package.accept_keywords/${REPO_NAME}
     - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
     - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
