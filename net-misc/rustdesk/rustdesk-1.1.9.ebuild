@@ -10,7 +10,7 @@ HOMEPAGE="https://www.rustdesk.com/"
 
 SRC_URI="https://github.com/rustdesk/${PN}/releases/download/${PV}/${P}.deb"
 
-LICENSE="AGPL-3.0"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
