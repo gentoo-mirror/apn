@@ -28,7 +28,7 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	!arm64? ( sys-apps/msr-tools )
+	amd64? ( sys-apps/msr-tools )
 "
 
 PATCHES=(
