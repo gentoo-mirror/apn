@@ -1,0 +1,20 @@
+diff --git a/src/crypto/rx/RxDataset.cpp b/src/crypto/rx/RxDataset.cpp
+index 86b3a3f6..b071fbcf 100644
+--- a/src/crypto/rx/RxDataset.cpp
++++ b/src/crypto/rx/RxDataset.cpp
+@@ -203,11 +203,11 @@ void xmrig::RxDataset::allocate(bool hugePages, bool oneGbPages)
+         return;
+     }
+ 
+-    if (m_mode == RxConfig::AutoMode && uv_get_total_memory() < (maxSize() + RxCache::maxSize())) {
+-        LOG_ERR(CLEAR "%s" RED_BOLD_S "not enough memory for RandomX dataset", Tags::randomx());
++    //if (m_mode == RxConfig::AutoMode && uv_get_total_memory() < (maxSize() + RxCache::maxSize())) {
++    //    LOG_ERR(CLEAR "%s" RED_BOLD_S "not enough memory for RandomX dataset", Tags::randomx());
+ 
+-        return;
+-    }
++    //    return;
++    //}
+ 
+     m_memory  = new VirtualMemory(maxSize(), hugePages, oneGbPages, false, m_node);
+ 
