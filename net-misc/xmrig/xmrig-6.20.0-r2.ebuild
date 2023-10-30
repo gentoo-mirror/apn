@@ -34,7 +34,6 @@ RDEPEND="
 PATCHES=(
 	"${FILESDIR}"/${PN}-6.20.0-3348.patch
 	"${FILESDIR}"/${PN}-6.12.2-nonotls.patch
-	"${FILESDIR}"/${PN}-6.12.2-nonotls.patch
 )
 
 src_prepare() {
