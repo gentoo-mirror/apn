@@ -94,7 +94,7 @@ default:
         CATEGORY: ["dev-python"]
         <<: *images
       - PKG: [xmrig]
-        ARCH: ["", arm64, arm]
+        ARCH: [amd64, arm64, arm]
         VERSION: [6.20.0-r2]
         CATEGORY: ["net-misc"]
         <<: *images
