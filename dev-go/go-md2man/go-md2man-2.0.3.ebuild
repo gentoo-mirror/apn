@@ -17,8 +17,7 @@ KEYWORDS="amd64 ~arm arm64 ~loong ppc64 ~riscv ~x86"
 RESTRICT+=" test"
 
 src_compile() {
-	#emake BUILD_FLAGS="-mod=vendor" build
-	make BUILD_FLAGS="-mod=vendor" build
+	emake BUILD_FLAGS="-mod=vendor" build
 }
 
 src_install() {
