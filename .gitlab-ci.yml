@@ -107,12 +107,12 @@ default:
     - emerge app-eselect/eselect-repository
     - eselect repository enable guru && emaint -r guru sync
     - eselect repository enable jjakob && emaint -r jjakob sync
-    - echo '*/*::guru ~amd64' > /etc/portage/package.accept_keywords/guru
-    - echo '*/*::jjakob ~amd64' > /etc/portage/package.accept_keywords/jjakob
+    - echo '*/*::guru ~*' > /etc/portage/package.accept_keywords/guru
+    - echo '*/*::jjakob ~*' > /etc/portage/package.accept_keywords/jjakob
     - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
-    - ACCEPT_KEYWORDS="~amd64" emerge -q '>=app-portage/pkg-testing-tools-0.1.2'
-    - echo 'dev-util/hermes ~amd64' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo "*/*::${REPO_NAME} ~amd64" > /etc/portage/package.accept_keywords/${REPO_NAME}
+    - ACCEPT_KEYWORDS="~*" emerge -q '>=app-portage/pkg-testing-tools-0.1.2'
+    - echo 'dev-util/hermes ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
+    - echo "*/*::${REPO_NAME} ~*" > /etc/portage/package.accept_keywords/${REPO_NAME}
     - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
     - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
   rules:
