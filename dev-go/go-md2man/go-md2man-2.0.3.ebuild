@@ -17,7 +17,7 @@ KEYWORDS="amd64 ~arm arm64 ~loong ppc64 ~riscv ~x86"
 RESTRICT+=" test"
 
 src_compile() {
-	CGO_ENABLED=1 emake BUILD_FLAGS="-mod=vendor" build
+	emake GOFLAGS="${GOFLAGS} -buildmode=default" BUILD_FLAGS="-mod=vendor" build
 }
 
 src_install() {
