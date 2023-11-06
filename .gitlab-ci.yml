@@ -153,7 +153,8 @@ global-pkgcheck:
 .check:
   image: apnpucky/gentoo-ebuild-ci
   extends: .config
-  tags: amd64
+  tags: 
+    - amd64
   stage: checksingle
   before_script: 
     - emerge app-eselect/eselect-repository
@@ -165,7 +166,8 @@ global-pkgcheck:
 .warn:
   image: apnpucky/gentoo-ebuild-ci
   extends: .config
-  tags: amd64
+  tags: 
+    - amd64
   stage: checksingle
   before_script: 
     - emerge app-eselect/eselect-repository
