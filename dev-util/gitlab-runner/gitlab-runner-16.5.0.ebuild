@@ -27,7 +27,7 @@ DOCS=( docs CHANGELOG.md README.md config.toml.example )
 S="${WORKDIR}/${PN}-v${PV}"
 
 src_compile() {
-	sed -i 's#s/aarch64/arm64/#s/aarch64/arm64/ ; s/armv7l/arm/#g' || die
+	sed -i 's#s/aarch64/arm64/#s/aarch64/arm64/ ; s/armv7l/arm/#g' Makefile.build.mk || die
 	emake \
 		BUILT="$(date -u '+%Y-%m-%dT%H:%M:%S%:z')" \
 		GOX="${EPREFIX}/usr/bin/gox" \
