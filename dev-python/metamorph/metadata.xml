@@ -6,7 +6,7 @@
 		<name>APN-Pucky</name>
 	</maintainer>
 	<longdescription lang="en">
-	Metamorph generates new text by repeated translating.
+	Metamorph easily fixes typos and suggests alternative wordings by repeatedly translating the text into different languages and in the end to the desired language.
 	</longdescription>
 	<upstream>
 		<remote-id type="github">APN-Pucky/metamorph</remote-id>
