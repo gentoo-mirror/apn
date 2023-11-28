@@ -91,6 +91,11 @@ default:
         CATEGORY: ["net-mail"]
         ARCH: [amd64]
         <<: *images
+      - PKG: [pkg-testing-tools]
+        ARCH: [amd64, arm]
+        VERSION: [0.2.0]
+        CATEGORY: ["app-portage"]
+        <<: *images
 
 .matrix6: &matrix6
   parallel:
