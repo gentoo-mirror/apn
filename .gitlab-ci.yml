@@ -92,7 +92,7 @@ default:
         ARCH: [amd64]
         <<: *images
       - PKG: [pkg-testing-tools]
-        ARCH: [amd64, arm]
+        ARCH: [amd64, arm, riscv, arm64]
         VERSION: [0.2.0]
         CATEGORY: ["app-portage"]
         <<: *images
