@@ -116,7 +116,7 @@ default:
         CATEGORY: ["net-misc"]
         <<: *images
 
-.config:
+.configgeneral:
   tags:
     - $ARCH
   before_script:
@@ -132,14 +132,31 @@ default:
     - echo "*/*::${REPO_NAME} ~*" > /etc/portage/package.accept_keywords/${REPO_NAME}
     - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
     - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
+
+.configall:
+  extends: .configgeneral
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH=="master") || $TEST_ALL == "1" || $PROBABILITY
-      changes:
+    - changes:
         - "$CATEGORY/$PKG/$PKG-$VERSION*.ebuild"
         - "$CATEGORY/$PKG/metadata.xml"
+        - "$CATEGORY/$PKG/Manifest"
         - "$CATEGORY/$PKG/files/*"
         - "$CATEGORY/$PKG/.build"
         - ".build"
+
+.config:
+  extends: .configgeneral
+  rules:
+    - if: $ARCH == "amd64"
+      changes:
+        - "$CATEGORY/$PKG/$PKG-$VERSION*.ebuild"
+        - "$CATEGORY/$PKG/metadata.xml"
+        - "$CATEGORY/$PKG/Manifest"
+        - "$CATEGORY/$PKG/files/*"
+        - "$CATEGORY/$PKG/.build"
+        - ".build"
+
+
 
 local-pkgcheck:
   image: apnpucky/gentoo-ebuild-ci
@@ -198,7 +215,7 @@ global-pkgcheck:
 .build:
   stage: build
   needs: []
-  extends: .config
+  extends: .configall
   script:
     - USE="-root" emerge "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y 2>&1 | tee "build_$CATEGORY_$PKG-$VERSION.log";
   artifacts:
@@ -210,7 +227,7 @@ global-pkgcheck:
 .test:
   stage: test
   needs: []
-  extends: .config
+  extends: .configall
   script:
     - if [[ -n $PROBABILITY ]] && [[ $(( RANDOM % 101 )) -gt $PROBABILITY ]] ; then exit 137 ; fi
     - if grep -Fq "python-single-r1" $CATEGORY/$PKG/$PKG-$VERSION*.ebuild;
