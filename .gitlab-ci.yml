@@ -128,7 +128,7 @@ default:
     - echo '*/*::jjakob ~*' > /etc/portage/package.accept_keywords/jjakob
     - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
     - echo 'app-portage/pkg-testing-tools **' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - ACCEPT_KEYWORDS="~*" emerge -q '>=app-portage/pkg-testing-tools-9999'
+    - emerge -q '>=app-portage/pkg-testing-tools-9999'
     - echo 'dev-util/hermes ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
     - echo "*/*::${REPO_NAME} ~*" > /etc/portage/package.accept_keywords/${REPO_NAME}
     - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
