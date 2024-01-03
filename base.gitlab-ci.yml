@@ -162,8 +162,10 @@ check:
 warn:
   extends: .warn
 build:
+  needs: []
   extends: .build
 test:
+  needs: []
   extends: .test
 qa:
   extends: .qa
