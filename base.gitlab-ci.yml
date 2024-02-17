@@ -24,8 +24,8 @@ default:
 
 .configgeneral:
   image: $IMAGE
-  matrix:
-    parallel:
+  parallel:
+    matrix:
       <<: *images
   interruptible: true
   tags:
