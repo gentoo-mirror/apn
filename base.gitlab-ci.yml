@@ -46,6 +46,7 @@ default:
     - echo "*/*::${REPO_NAME} ~*" > /etc/portage/package.accept_keywords/${REPO_NAME}
     - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
     - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
+    - mkdir -p ${PREFIX}/etc/portage/profile/ && echo "-python_targets_python3_12" >> ${PREFIX}/etc/portage/profile/use.mask
 
 .configall:
   extends: .configgeneral
