@@ -27,5 +27,6 @@ IUSE="test"
 RESTRICT="!test? ( test )"
 RDEPEND="
 	sys-apps/portage[${PYTHON_USEDEP}]
-	test? ( dev-python/pytest[${PYTHON_USEDEP}] )
 "
+
+distutils_enable_tests pytest
