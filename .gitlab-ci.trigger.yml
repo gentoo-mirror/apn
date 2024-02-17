@@ -1,5 +1,6 @@
 stages:
   - filter_amd64
+  - filter_prefix
   - filter_rest
 
 #workflow:
@@ -35,6 +36,29 @@ default:
 
 .filter_amd64:
   stage: filter_amd64
+  variables:
+    IMAGE: apnpucky/gentoo-apn:latest
+    PREFIX: ""
+  trigger:
+    include: base.gitlab-ci.yml
+    forward:
+      pipeline_variables: true
+    strategy: depend
+  rules:
+    - if: $ARCH == "amd64"
+      changes:
+        - "$CATEGORY/$PKG/$PKG-$VERSION*.ebuild"
+        - "$CATEGORY/$PKG/metadata.xml"
+        - "$CATEGORY/$PKG/Manifest"
+        - "$CATEGORY/$PKG/files/*"
+        - "$CATEGORY/$PKG/.build"
+        - ".build"
+
+.filter_prefix:
+  stage: filter_rest
+  variables:
+    IMAGE: apnpucky/debian-gentoo-prefix-ci:latest
+    PREFIX: "/gentoo-prefix"
   trigger:
     include: base.gitlab-ci.yml
     forward:
@@ -52,6 +76,9 @@ default:
 
 .filter_rest:
   stage: filter_rest
+  variables:
+    IMAGE: apnpucky/gentoo-apn:latest
+    PREFIX: ""
   trigger:
     include: base.gitlab-ci.yml
     forward:

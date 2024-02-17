@@ -15,37 +15,28 @@ variables:
 default:
   image: apnpucky/gentoo-apn:latest
 
-.images: &images
-  IMAGE:
-    [
-      apnpucky/gentoo-apn:latest,
-      apnpucky/gentoo-hep-forge-unstable:latest,
-    ]
-
 .configgeneral:
   image: $IMAGE
-  parallel:
-    matrix:
-      - <<: *images
   interruptible: true
   tags:
     - $ARCH
   before_script:
+    - mkdir -p ${PREFIX}/var/db/repos/apn && printf "[apn]\nlocation = ${PREFIX}/var/db/repos/apn\nsync-type = git\nsync-uri = https://gitlab.com/APN-Pucky/gentoo-apn.git" > ${PREFIX}/etc/portage/repos.conf/apn.conf && emaint -r apn sync
     - emerge --sync || emaint -r ${REPO_NAME} sync
     - emerge app-eselect/eselect-repository
     - eselect repository enable guru && emaint -r guru sync
     - eselect repository enable jjakob && emaint -r jjakob sync
-    - echo '*/*::guru ~*' > /etc/portage/package.accept_keywords/guru
-    - echo '*/*::jjakob ~*' > /etc/portage/package.accept_keywords/jjakob
-    - pushd /var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
-    - ACCEPT_KEYWORDS="* ~*" emerge -q '>=app-portage/pkg-testing-tools-0.2.1'
-    - echo 'dev-util/hermes ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'dev-python/uncertainties ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'dev-python/toposort ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo 'sci-physics/root ~*' >> /etc/portage/package.accept_keywords/zz-autoaccept
-    - echo "*/*::${REPO_NAME} ~*" > /etc/portage/package.accept_keywords/${REPO_NAME}
-    - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> /etc/portage/package.use/root
-    - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> /etc/portage/package.accept_keywords/${REPO_NAME}
+    - echo '*/*::guru ~*' > ${PREFIX}/etc/portage/package.accept_keywords/guru
+    - echo '*/*::jjakob ~*' > ${PREFIX}/etc/portage/package.accept_keywords/jjakob
+    - pushd ${PREFIX}/var/db/repos/${REPO_NAME} && git remote set-branches origin '*' && git fetch -v --depth=1 && git pull --unshallow && git checkout ${CI_COMMIT_SHA} && popd
+    - ACCEPT_KEYWORDS="* ~* **" emerge -q '>=app-portage/pkg-testing-tools-9999'
+    - echo 'dev-util/hermes ~*' >> ${PREFIX}/etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'dev-python/uncertainties ~*' >> ${PREFIX}/etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'dev-python/toposort ~*' >> ${PREFIX}/etc/portage/package.accept_keywords/zz-autoaccept
+    - echo 'sci-physics/root ~*' >> ${PREFIX}/etc/portage/package.accept_keywords/zz-autoaccept
+    - echo "*/*::${REPO_NAME} ~*" > ${PREFIX}/etc/portage/package.accept_keywords/${REPO_NAME}
+    - echo '>=media-libs/libafterimage-1.20-r6 png gif tiff jpeg' >> ${PREFIX}/etc/portage/package.use/root
+    - echo "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME} **" >> ${PREFIX}/etc/portage/package.accept_keywords/${REPO_NAME}
     - mkdir -p ${PREFIX}/etc/portage/profile/ && echo "-python_targets_python3_12" >> ${PREFIX}/etc/portage/profile/use.mask
 
 .configall:
@@ -142,9 +133,9 @@ default:
   stage: test
   extends: .configall
   script:
-    - printf '\nPYTHON_SINGLE_TARGET=""\nLUA_SINGLE_TARGET=""' >> /etc/portage/make.conf 
+    - printf '\nPYTHON_SINGLE_TARGET=""\nLUA_SINGLE_TARGET=""' >> ${PREFIX}/etc/portage/make.conf 
     - if [[ -n $PROBABILITY ]] && [[ $(( RANDOM % 101 )) -gt $PROBABILITY ]] ; then exit 137 ; fi
-    - pkg-testing-tool --append-emerge "--autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y" --max-use-combinations 32 --ccache --extra-env-file 'test.conf' --append-required-use "!root" --test-feature-scope always -p "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --report test_${CATEGORY}_${PKG}-${VERSION}_${ARCH}.json 2>&1 | tee "test_${CATEGORY}_${PKG}-${VERSION}_${ARCH}.log";
+    - pkg-testing-tool --prefix="${PREFIX}" --append-emerge "--autounmask=y --autounmask-write --autounmask-continue --autounmask-use=y" --max-use-combinations 32 --ccache --extra-env-file 'test.conf' --append-required-use "!root" --test-feature-scope always -p "=$CATEGORY/$PKG-$VERSION*::${REPO_NAME}" --report test_${CATEGORY}_${PKG}-${VERSION}_${ARCH}.json 2>&1 | tee "test_${CATEGORY}_${PKG}-${VERSION}_${ARCH}.log";
   artifacts:
     when: always
     paths:

@@ -103,13 +103,15 @@ def generate_jobs():
               CATEGORY: {eb[0]}
               VERSION: {eb[2]}
               ARCH: {eb[3]}
-              IMAGE: apnpucky/gentoo-apn:latest
 filter_{name}_rest:
     <<: *var_{name}
     extends: .filter_rest
 filter_{name}_amd64:
     <<: *var_{name}
     extends: .filter_amd64
+filter_{name}_prefix:
+    <<: *var_{name}
+    extends: .filter_prefix
     """
         gitlabjobs.append(gitlabjob)
     return gitlabjobs
