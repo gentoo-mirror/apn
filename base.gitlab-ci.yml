@@ -19,10 +19,14 @@ default:
   IMAGE:
     [
       apnpucky/gentoo-apn:latest,
-#      apnpucky/gentoo-hep-forge-unstable:latest,
+      apnpucky/gentoo-hep-forge-unstable:latest,
     ]
 
 .configgeneral:
+  image: $IMAGE
+  matrix:
+    parallel:
+      <<: *images
   interruptible: true
   tags:
     - $ARCH
