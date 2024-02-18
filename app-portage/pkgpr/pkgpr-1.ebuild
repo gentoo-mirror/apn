@@ -3,7 +3,7 @@
 
 EAPI=8
 
-DESCRIPTION="Project to automatically propose a PR to Gentoo"
+DESCRIPTION="Project to automatically propose a PR to a Gentoo repo"
 HOMEPAGE="https://github.com/APN-Pucky/pkgpr"
 SRC_URI="https://github.com/APN-Pucky/pkgpr/archive/refs/tags/v${PV}.tar.gz -> ${P}.gh.tar.gz"
 
