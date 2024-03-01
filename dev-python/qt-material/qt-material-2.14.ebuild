@@ -7,7 +7,7 @@ inherit distutils-r1
 
 DESCRIPTION="Material inspired stylesheet for PySide2, PySide6, PyQt5 and PyQt6"
 HOMEPAGE="
-    https://github.com/UN-GCPDS/qt-material
+	https://github.com/UN-GCPDS/qt-material
 "
 SLOT="0"
 LICENSE="BSD"
@@ -22,5 +22,7 @@ else
 fi
 
 RDEPEND="
-    dev-python/jinja
+	dev-python/jinja
+	dev-python/pyside6[designer,widgets,gui,qml]
+	dev-qt/qttools[designer,qml,widgets]
 "
