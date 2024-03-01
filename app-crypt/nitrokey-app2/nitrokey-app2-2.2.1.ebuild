@@ -3,14 +3,15 @@
 
 EAPI=8
 
-DISTUTILS_USE_PEP517=flit
-PYTHON_COMPAT=( python3_{10..11} )
+DISTUTILS_USE_PEP517=poetry
+PYTHON_COMPAT=( python3_{9..11} )
 
 inherit distutils-r1
 
 DESCRIPTION="This application allows to manage Nitrokey 3 devices"
 HOMEPAGE="
-    https://github.com/Nitrokey/nitrokey-app2/
+	https://github.com/Nitrokey/nitrokey-app2/
+	https://docs.nitrokey.com
 "
 SLOT="0"
 LICENSE="Apache-2.0"
@@ -24,14 +25,16 @@ else
 fi
 
 RDEPEND="
-    dev-python/PyQt5
-    dev-python/PyQt5-stubs
-    dev-python/pyudev
-    ~app-crypt/pynitrokey-0.4.38
-    dev-python/qt-material
+	dev-python/PyQt5
+	dev-python/PyQt5-stubs
+	dev-python/pyside6[quick,qml]
+	dev-python/pyside6-tools
+	dev-python/pyudev
+	~app-crypt/pynitrokey-0.4.45
+	dev-python/qt-material
 "
 
 src_compile() {
-    make build-ui
-    distutils-r1_src_compile
+	make build-ui
+	distutils-r1_src_compile
 }
