@@ -1,5 +1,5 @@
 app-containers/runc 1.1.9: runc container cli tools
-app-crypt/nitrokey-app2 2.1.2 9999: This application allows to manage Nitrokey 3 devices
+app-crypt/nitrokey-app2 2.2.1 9999: This application allows to manage Nitrokey 3 devices
 app-crypt/pynitrokey 0.4.38 0.4.40 9999: Python client for Nitrokey devices
 app-portage/pkg-testing-tools 0.2.0 0.2.1 9999: Packages testing tools for Gentoo
 app-portage/pkgpr 0.0.1: Project to automatically propose a PR to a Gentoo repo
