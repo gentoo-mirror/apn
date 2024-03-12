@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install unpack
+DEPEND=dev-util/pkgdev dev-util/github-cli
+DESCRIPTION=Project to automatically propose a PR to a Gentoo repo
+EAPI=8
+HOMEPAGE=https://github.com/APN-Pucky/pkgpr
+INHERIT=git-r3
+LICENSE=GPL-3
+PROPERTIES=live
+RDEPEND=dev-util/pkgdev dev-util/github-cli
+SLOT=0
+_eclasses_=git-r3	86fa1f157b70b9d2ff340c4633b1cf4b
+_md5_=ce9cc3ef933bacbac55126fe4d5e20de
