@@ -20,6 +20,7 @@ SLOT="0"
 DEPEND="
 	dev-util/pkgdev
 	dev-util/github-cli
+	>=app-portage/pkg-testing-tools-0.2.3
 "
 RDEPEND="${DEPEND}"
 
