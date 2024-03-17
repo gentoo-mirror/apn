@@ -4,6 +4,7 @@ app-crypt/pynitrokey 0.4.38 0.4.40 9999: Python client for Nitrokey devices
 app-portage/pkg-testing-tools 0.2.0 0.2.1 0.2.2 0.2.3 9999: Packages testing tools for Gentoo
 app-portage/pkgpr 0.0.1 0.0.2 0.0.3 0.0.4 0.0.5 0.0.6 9999: Project to automatically propose a PR to a Gentoo repo
 dev-go/go-md2man 2.0.3: A utility to convert markdown to man pages
+dev-go/gox 1.0.1: A dead simple, no frills Go cross compile tool
 dev-python/PyQt5-stubs 5.15.2.0: Stubs for PyQt5
 dev-python/bitstring 3.1.9: A pure Python module for creation and analysis of binary data
 dev-python/deep-translator 1.9.1 1.11.1 9999: Translation for humans
@@ -14,7 +15,7 @@ dev-python/poetry_dynamic_versioning 0.21.1-r1 0.21.4-r1 0.25.0 9999: Plugin for
 dev-python/pympress 1.7.2 1.8.4: Pympress is a PDF presentation tool designed for dual-screen setups such as presentations and public talks.
 dev-python/qt-material 2.14: Material inspired stylesheet for PySide2, PySide6, PyQt5 and PyQt6
 dev-python/spsdk 1.10.1 1.11.0: Open Source Secure Provisioning SDK for NXP MCU/MPU
-dev-util/gitlab-runner 16.5.0: The official GitLab Runner, written in Go
+dev-util/gitlab-runner 16.5.0 16.9.1: The official GitLab Runner, written in Go
 games-simulation/tyrant_optimize 6.4.2 9999: Simulator for the card game tyrant_unleashed.
 media-sound/mpDris2 0.8 9999: mpDris2 provide MPRIS 2 support to mpd
 net-im/discord 0.0.39: All-in-one voice and text chat for gamers
