@@ -24,6 +24,11 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+# No compilation needed
+src_compile() {
+	:
+}
+
 src_install() {
 	dobin pkgpr
 }
