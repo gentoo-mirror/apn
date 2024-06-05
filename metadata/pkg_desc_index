@@ -1,14 +1,14 @@
 app-containers/runc 1.1.9: runc container cli tools
 app-crypt/nitrokey-app2 2.2.1 9999: This application allows to manage Nitrokey 3 devices
 app-crypt/pynitrokey 0.4.38 0.4.40 9999: Python client for Nitrokey devices
-app-portage/pkg-testing-tools 0.2.0 0.2.1 0.2.2 0.2.3 0.2.4 0.2.5 9999: Packages testing tools for Gentoo
-app-portage/pkgpr 0.0.9 0.0.11 9999: Project to automatically propose a PR to a Gentoo repo
+app-portage/pkg-testing-tools 0.2.5: Packages testing tools for Gentoo
+app-portage/pkgpr 0.0.9 0.0.11 0.0.12 9999: Project to automatically propose a PR to a Gentoo repo
 dev-go/go-md2man 2.0.3: A utility to convert markdown to man pages
 dev-go/gox 1.0.1: A dead simple, no frills Go cross compile tool
 dev-python/PyQt5-stubs 5.15.2.0: Stubs for PyQt5
 dev-python/bitstring 3.1.9: A pure Python module for creation and analysis of binary data
 dev-python/deep-translator 1.9.1 1.11.1 9999: Translation for humans
-dev-python/dunamai 1.15.0-r1 1.16.0 1.18.0 9999: Library and command line tool for producing version strings
+dev-python/dunamai 1.15.0-r1 1.16.0 1.18.0 1.21.1 9999: Library and command line tool for producing version strings
 dev-python/metamorph 0.0.13 0.0.14 9999: Metamorph generates new text by repeated translating.
 dev-python/pipx 1.2.0: Install and Run Python Applications in Isolated Environments
 dev-python/poetry_dynamic_versioning 0.21.1-r1 0.21.4-r1 0.25.0 9999: Plugin for Poetry to enable dynamic versioning based on VCS tags
