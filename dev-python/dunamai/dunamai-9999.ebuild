@@ -4,7 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=poetry
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{9..12} )
 inherit distutils-r1
 
 REPO=mtkennerly
@@ -27,7 +27,6 @@ SLOT="0"
 
 RDEPEND="
 	>=dev-python/packaging-20.9[${PYTHON_USEDEP}]
-	>=dev-python/importlib_metadata-1.6.0[${PYTHON_USEDEP}]
 "
 BDEPEND="${RDEPEND}"
 
