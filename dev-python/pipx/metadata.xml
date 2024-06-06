@@ -9,6 +9,6 @@
 		pipx
 	</longdescription>
 	<use>
-		<flag name="test "> not test</flag>
+		<flag name="bash-completion"> not test</flag>
 	</use>
 </pkgmetadata>
