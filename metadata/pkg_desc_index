@@ -7,7 +7,7 @@ dev-go/go-md2man 2.0.3: A utility to convert markdown to man pages
 dev-go/gox 1.0.1: A dead simple, no frills Go cross compile tool
 dev-python/PyQt5-stubs 5.15.2.0: Stubs for PyQt5
 dev-python/bitstring 3.1.9: A pure Python module for creation and analysis of binary data
-dev-python/deep-translator 1.9.1 1.11.1 9999: Translation for humans
+dev-python/deep-translator 1.11.1 1.11.4 9999: Translation for humans
 dev-python/dunamai 1.15.0-r1 1.16.0 1.18.0 1.21.1 9999: Library and command line tool for producing version strings
 dev-python/metamorph 0.0.13 0.0.14 9999: Metamorph generates new text by repeated translating.
 dev-python/pipx 1.2.0: Install and Run Python Applications in Isolated Environments
