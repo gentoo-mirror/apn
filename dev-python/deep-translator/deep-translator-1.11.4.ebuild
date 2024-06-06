@@ -4,8 +4,7 @@
 EAPI=8
 
 DISTUTILS_USE_PEP517=poetry
-PYTHON_COMPAT=( python3_{9..11} )
-PYPI_NO_NORMALIZE=1
+PYTHON_COMPAT=( python3_{9..12} )
 inherit distutils-r1
 
 REPO=nidhaloff
