@@ -2,7 +2,7 @@ app-containers/runc 1.1.9: runc container cli tools
 app-crypt/nitrokey-app2 2.2.1 9999: This application allows to manage Nitrokey 3 devices
 app-crypt/pynitrokey 0.4.38 0.4.40 9999: Python client for Nitrokey devices
 app-portage/pkg-testing-tools 0.2.5 9999: Packages testing tools for Gentoo
-app-portage/pkgpr 0.0.9 0.0.11 0.0.12 9999: Project to automatically propose a PR to a Gentoo repo
+app-portage/pkgpr 0.0.9 0.0.11 0.0.12 0.0.13 9999: Project to automatically propose a PR to a Gentoo repo
 dev-go/go-md2man 2.0.3: A utility to convert markdown to man pages
 dev-go/gox 1.0.1: A dead simple, no frills Go cross compile tool
 dev-python/PyQt5-stubs 5.15.2.0: Stubs for PyQt5
