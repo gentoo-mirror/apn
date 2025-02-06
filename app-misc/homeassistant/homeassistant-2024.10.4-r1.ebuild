@@ -106,7 +106,7 @@ RDEPEND="${RDEPEND}
 	>=dev-python/orjson-3.10.7[${PYTHON_USEDEP}]
 	>=dev-python/packaging-23.1[${PYTHON_USEDEP}]
 	~dev-python/paho-mqtt-1.6.1[${PYTHON_USEDEP}]
-	~dev-python/pandas-2.1.4[${PYTHON_USEDEP}]
+	>=dev-python/pandas-2.1.4[${PYTHON_USEDEP}]
 	~dev-python/pillow-10.4.0[${PYTHON_USEDEP}]
 	~dev-python/protobuf-4.25.4[${PYTHON_USEDEP}]
 	~dev-python/psutil-home-assistant-0.0.1[${PYTHON_USEDEP}]
