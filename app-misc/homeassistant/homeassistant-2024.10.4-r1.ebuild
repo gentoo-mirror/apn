@@ -121,7 +121,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/pyspeex-noise-1.0.2[${PYTHON_USEDEP}]
 	~dev-python/python-slugify-8.0.4[${PYTHON_USEDEP}]
 	~dev-python/PyTurboJPEG-1.7.5[${PYTHON_USEDEP}]
-	~dev-python/pyudev-0.24.1[${PYTHON_USEDEP}]
+	>=dev-python/pyudev-0.24.1[${PYTHON_USEDEP}]
 	~dev-python/pyyaml-6.0.2[${PYTHON_USEDEP}]
 	~dev-python/requests-2.32.3[${PYTHON_USEDEP}]
 	>=net-analyzer/scapy-2.5.0[${PYTHON_USEDEP}]
