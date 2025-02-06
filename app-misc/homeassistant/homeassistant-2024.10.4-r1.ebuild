@@ -75,7 +75,7 @@ RDEPEND="${RDEPEND}
 	>=dev-python/chacha20poly1305-reuseable-0.13.0[${PYTHON_USEDEP}]
 	~dev-python/charset-normalizer-3.2.0[${PYTHON_USEDEP}]
 	~dev-python/ciso8601-2.3.1[${PYTHON_USEDEP}]
-	~dev-python/cryptography-43.0.1[${PYTHON_USEDEP}]
+	>=dev-python/cryptography-43.0.1[${PYTHON_USEDEP}]
 	>=dev-python/dacite-1.7.0[${PYTHON_USEDEP}]
 	~dev-python/dbus-fast-2.24.0[${PYTHON_USEDEP}]
 	>=dev-python/faust-cchardet-2.1.18[${PYTHON_USEDEP}]
@@ -112,7 +112,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/psutil-home-assistant-0.0.1[${PYTHON_USEDEP}]
 	>=dev-python/pycountry-23.12.11[${PYTHON_USEDEP}]
 	>=dev-python/pycryptodome-3.6.6[${PYTHON_USEDEP}]
-	~dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
+	>=dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
 	~dev-python/pyjwt-2.9.0[${PYTHON_USEDEP}]
 	~dev-python/pymicro-vad-1.0.1[${PYTHON_USEDEP}]
 	~dev-python/pynacl-1.5.0[${PYTHON_USEDEP}]
@@ -131,7 +131,7 @@ RDEPEND="${RDEPEND}
 	<dev-python/typing-extensions-5.0[${PYTHON_USEDEP}]
 	~dev-python/ulid-transform-1.0.2[${PYTHON_USEDEP}]
 	dev-python/urllib3[${PYTHON_USEDEP}]
-	~dev-python/uv-0.4.15
+	>=dev-python/uv-0.4.15
 	~dev-python/voluptuous-openapi-0.0.5[${PYTHON_USEDEP}]
 	~dev-python/voluptuous-serialize-2.6.0[${PYTHON_USEDEP}]
 	~dev-python/voluptuous-0.15.2[${PYTHON_USEDEP}]
@@ -142,7 +142,7 @@ RDEPEND="${RDEPEND}
 # unknown origin, still something to clean up here
 
 RDEPEND="${RDEPEND}
-	~dev-python/colorlog-6.8.2[${PYTHON_USEDEP}]
+	>=dev-python/colorlog-6.8.2[${PYTHON_USEDEP}]
 	~dev-python/pyotp-2.8.0[${PYTHON_USEDEP}]
 	>=dev-python/pyqrcode-1.2.1[${PYTHON_USEDEP}]"
 # Module requirements from useflags
@@ -455,7 +455,7 @@ BDEPEND="${RDEPEND}
 		~dev-python/pip-licenses-5.0.0[${PYTHON_USEDEP}]
 		~dev-python/pipdeptree-2.23.4[${PYTHON_USEDEP}]
 		~dev-vcs/pre-commit-3.8.0
-		~dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
+		>=dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
 		~dev-python/pylint-per-file-ignores-1.3.2[${PYTHON_USEDEP}]
 		~dev-python/pylint-3.3.1[${PYTHON_USEDEP}]
 		~dev-python/pytest-asyncio-0.24.0[${PYTHON_USEDEP}]
