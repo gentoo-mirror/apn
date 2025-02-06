@@ -55,7 +55,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/aiohttp-3.10.8[${PYTHON_USEDEP}]
 	~dev-python/aiohttp-cors-0.7.0[${PYTHON_USEDEP}]
 	~dev-python/aiozoneinfo-0.2.1[${PYTHON_USEDEP}]
-	~dev-python/anyio-4.6.0[${PYTHON_USEDEP}]
+	>=dev-python/anyio-4.6.0[${PYTHON_USEDEP}]
 	~dev-python/astral-2.2[${PYTHON_USEDEP}]
 	~dev-python/async-interrupt-1.2.0[${PYTHON_USEDEP}]
 	~dev-python/async-upnp-client-0.40.0[${PYTHON_USEDEP}]
