@@ -97,16 +97,16 @@ RDEPEND="${RDEPEND}
 	~dev-python/httpx-0.27.2[${PYTHON_USEDEP}]
 	>=dev-python/hyperframe-5.2.0[${PYTHON_USEDEP}]
 	~dev-python/ifaddr-0.2.0[${PYTHON_USEDEP}]
-	~dev-python/jinja-3.1.4[${PYTHON_USEDEP}]
+	>=dev-python/jinja2-3.1.4[${PYTHON_USEDEP}]
 	~dev-python/lru-dict-1.3.0[${PYTHON_USEDEP}]
 	>=dev-python/mashumaro-3.13.1[${PYTHON_USEDEP}]
 	>=dev-python/multidict-6.0.2[${PYTHON_USEDEP}]
 	~media-libs/mutagen-1.47.0[${PYTHON_USEDEP}]
-	~dev-python/numpy-1.26.4[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.26.4[${PYTHON_USEDEP}]
 	>=dev-python/orjson-3.10.7[${PYTHON_USEDEP}]
 	>=dev-python/packaging-23.1[${PYTHON_USEDEP}]
 	~dev-python/paho-mqtt-1.6.1[${PYTHON_USEDEP}]
-	~dev-python/pandas-2.1.4[${PYTHON_USEDEP}]
+	>=dev-python/pandas-2.1.4[${PYTHON_USEDEP}]
 	~dev-python/pillow-10.4.0[${PYTHON_USEDEP}]
 	~dev-python/protobuf-4.25.4[${PYTHON_USEDEP}]
 	~dev-python/psutil-home-assistant-0.0.1[${PYTHON_USEDEP}]
@@ -220,7 +220,7 @@ RDEPEND="${RDEPEND}
 	cisco_mobility_express? ( ~dev-python/ciscomobilityexpress-0.3.9[${PYTHON_USEDEP}] )
 	cli? ( app-misc/home-assistant-cli )
 	co2signal? ( ~dev-python/aioelectricitymaps-0.4.0[${PYTHON_USEDEP}] )
-	compensation? ( ~dev-python/numpy-1.26.4[${PYTHON_USEDEP}] )
+	compensation? ( >=dev-python/numpy-1.26.4[${PYTHON_USEDEP}] )
 	coronavirus? ( ~dev-python/coronavirus-1.1.1[${PYTHON_USEDEP}] )
 	daikin? ( ~dev-python/pydaikin-2.13.7[${PYTHON_USEDEP}] )
 	deconz? ( ~dev-python/pydeconz-116[${PYTHON_USEDEP}] )
