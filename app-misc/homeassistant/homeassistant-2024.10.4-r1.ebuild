@@ -137,7 +137,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/voluptuous-0.15.2[${PYTHON_USEDEP}]
 	>=dev-python/websockets-11.0.1[${PYTHON_USEDEP}]
 	~dev-python/yarl-1.13.1[${PYTHON_USEDEP}]
-	~dev-python/zeroconf-0.135.0[${PYTHON_USEDEP}]"
+	>=dev-python/zeroconf-0.135.0[${PYTHON_USEDEP}]"
 
 # unknown origin, still something to clean up here
 
