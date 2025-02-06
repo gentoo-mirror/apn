@@ -220,7 +220,7 @@ RDEPEND="${RDEPEND}
 	cisco_mobility_express? ( ~dev-python/ciscomobilityexpress-0.3.9[${PYTHON_USEDEP}] )
 	cli? ( app-misc/home-assistant-cli )
 	co2signal? ( ~dev-python/aioelectricitymaps-0.4.0[${PYTHON_USEDEP}] )
-	compensation? ( ~dev-python/numpy-1.26.4[${PYTHON_USEDEP}] )
+	compensation? ( >=dev-python/numpy-1.26.4[${PYTHON_USEDEP}] )
 	coronavirus? ( ~dev-python/coronavirus-1.1.1[${PYTHON_USEDEP}] )
 	daikin? ( ~dev-python/pydaikin-2.13.7[${PYTHON_USEDEP}] )
 	deconz? ( ~dev-python/pydeconz-116[${PYTHON_USEDEP}] )
