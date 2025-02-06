@@ -112,7 +112,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/psutil-home-assistant-0.0.1[${PYTHON_USEDEP}]
 	>=dev-python/pycountry-23.12.11[${PYTHON_USEDEP}]
 	>=dev-python/pycryptodome-3.6.6[${PYTHON_USEDEP}]
-	~dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
+	>=dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
 	~dev-python/pyjwt-2.9.0[${PYTHON_USEDEP}]
 	~dev-python/pymicro-vad-1.0.1[${PYTHON_USEDEP}]
 	~dev-python/pynacl-1.5.0[${PYTHON_USEDEP}]
@@ -455,7 +455,7 @@ BDEPEND="${RDEPEND}
 		~dev-python/pip-licenses-5.0.0[${PYTHON_USEDEP}]
 		~dev-python/pipdeptree-2.23.4[${PYTHON_USEDEP}]
 		~dev-vcs/pre-commit-3.8.0
-		~dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
+		>=dev-python/pydantic-1.10.17[${PYTHON_USEDEP}]
 		~dev-python/pylint-per-file-ignores-1.3.2[${PYTHON_USEDEP}]
 		~dev-python/pylint-3.3.1[${PYTHON_USEDEP}]
 		~dev-python/pytest-asyncio-0.24.0[${PYTHON_USEDEP}]
