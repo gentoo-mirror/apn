@@ -6,12 +6,11 @@ PYTHON_COMPAT=( python3_{9..13} )
 DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 pypi
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="A compatibility shim between RPi.GPIO and lgpio"
+HOMEPAGE="
+	https://rpi-lgpio.readthedocs.io/en/latest/
+"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
-
-RDEPEND=""
-BDEPEND="${RDEPEND}"
