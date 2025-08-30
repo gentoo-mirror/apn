@@ -11,7 +11,7 @@ HOMEPAGE="https://github.com/doceme/py-spidev https://pypi.org/project/spidev/"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm arm64 x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
