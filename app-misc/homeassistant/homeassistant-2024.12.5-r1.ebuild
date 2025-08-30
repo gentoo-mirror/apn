@@ -224,7 +224,7 @@ RDEPEND="${RDEPEND}
 	bt_home_hub_5? ( ~dev-python/bthomehub5-devicelist-0.1.1[${PYTHON_USEDEP}] )
 	bt_smarthub? ( ~dev-python/btsmarthub-devicelist-0.2.3[${PYTHON_USEDEP}] )
 	buienradar? ( ~dev-python/buienradar-1.0.6[${PYTHON_USEDEP}] )
-	caldav? ( ~dev-python/caldav-1.3.9[${PYTHON_USEDEP}] )
+	caldav? ( ~dev-python/caldav-1.3.8[${PYTHON_USEDEP}] )
 	camera? ( ~dev-python/PyTurboJPEG-1.7.5[${PYTHON_USEDEP}] )
 	canary? ( ~dev-python/py-canary-0.5.4[${PYTHON_USEDEP}] )
 	cast? ( ~dev-python/pychromecast-14.0.5[${PYTHON_USEDEP}] )
