@@ -81,7 +81,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/ciso8601-2.3.1[${PYTHON_USEDEP}]
 	dev-python/cryptography[${PYTHON_USEDEP}]
 	>=dev-python/dacite-1.7.0[${PYTHON_USEDEP}]
-	~dev-python/dbus-fast-2.24.3[${PYTHON_USEDEP}]
+	dev-python/dbus-fast[${PYTHON_USEDEP}]
 	>=dev-python/faust-cchardet-2.1.18[${PYTHON_USEDEP}]
 	~dev-python/fnv-hash-fast-1.0.2[${PYTHON_USEDEP}]
 	~dev-python/go2rtc-client-0.1.1[${PYTHON_USEDEP}]
@@ -208,7 +208,7 @@ RDEPEND="${RDEPEND}
 	blinksticklight? ( ~dev-python/BlinkStick-1.2.0[${PYTHON_USEDEP}] )
 	blinkt? ( ~dev-python/blinkt-0.1.0[${PYTHON_USEDEP}] )
 	blockchain? ( ~dev-python/python-blockchain-api-0.0.2[${PYTHON_USEDEP}] )
-	bluetooth? ( ~dev-python/bleak-0.22.3[${PYTHON_USEDEP}] ~dev-python/bleak-retry-connector-3.6.0[${PYTHON_USEDEP}] ~dev-python/bluetooth-adapters-0.20.2[${PYTHON_USEDEP}] ~dev-python/bluetooth-auto-recovery-1.4.2[${PYTHON_USEDEP}] ~dev-python/bluetooth-data-tools-1.20.0[${PYTHON_USEDEP}] ~dev-python/dbus-fast-2.24.3[${PYTHON_USEDEP}] ~dev-python/habluetooth-3.6.0[${PYTHON_USEDEP}] )
+	bluetooth? ( ~dev-python/bleak-0.22.3[${PYTHON_USEDEP}] ~dev-python/bleak-retry-connector-3.6.0[${PYTHON_USEDEP}] ~dev-python/bluetooth-adapters-0.20.2[${PYTHON_USEDEP}] ~dev-python/bluetooth-auto-recovery-1.4.2[${PYTHON_USEDEP}] ~dev-python/bluetooth-data-tools-1.20.0[${PYTHON_USEDEP}] dev-python/dbus-fast[${PYTHON_USEDEP}] ~dev-python/habluetooth-3.6.0[${PYTHON_USEDEP}] )
 	bluetooth_le_tracker? ( ~dev-python/pygatt-4.0.5[${PYTHON_USEDEP}] )
 	bluetooth_tracker? ( ~dev-python/bt-proximity-0.2.1[${PYTHON_USEDEP}] ~dev-python/pybluez-0.22[${PYTHON_USEDEP}] )
 	bme280? ( ~dev-python/i2csense-0.0.4[${PYTHON_USEDEP}] ~dev-python/smbus-cffi-0.5.1[${PYTHON_USEDEP}] ~dev-python/bme280spi-0.2.0[${PYTHON_USEDEP}] )
