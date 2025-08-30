@@ -11,6 +11,7 @@ HOMEPAGE="
 	https://github.com/rm-hull/bme280
 "
 SRC_URI="https://github.com/rm-hull/bme280/archive/refs/tags/${PV}.tar.gz -> ${P}.gh.tar.gz"
+S="${WORKDIR}/${P/rpi-/}"
 
 LICENSE="MIT"
 SLOT="0"
