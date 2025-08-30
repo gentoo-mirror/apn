@@ -14,3 +14,9 @@ HOMEPAGE="
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
+
+
+RDEPEND="
+	!dev-pyhton/RPi-GPIO
+"
+DEPEND="${DEPEND}"
