@@ -96,7 +96,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/home-assistant-bluetooth-1.13.0[${PYTHON_USEDEP}]
 	~dev-python/home-assistant-frontend-20241127.8[${PYTHON_USEDEP}]
 	~dev-python/home-assistant-intents-2024.12.9[${PYTHON_USEDEP}]
-	~dev-python/httpcore-1.0.5[${PYTHON_USEDEP}]
+	dev-python/httpcore[${PYTHON_USEDEP}]
 	>=dev-python/httplib2-0.19.0[${PYTHON_USEDEP}]
 	~dev-python/httpx-0.27.2[${PYTHON_USEDEP}]
 	>=dev-python/hyperframe-5.2.0[${PYTHON_USEDEP}]
