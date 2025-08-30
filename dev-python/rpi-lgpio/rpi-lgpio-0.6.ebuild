@@ -17,6 +17,6 @@ KEYWORDS="~amd64 ~arm64"
 
 
 RDEPEND="
-	!dev-pyhton/RPi-GPIO
+	!dev-python/RPi-GPIO
 "
 DEPEND="${DEPEND}"
