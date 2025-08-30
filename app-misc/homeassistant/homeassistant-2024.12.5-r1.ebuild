@@ -133,7 +133,8 @@ RDEPEND="${RDEPEND}
 	~dev-python/rpds-py-0.21.0[${PYTHON_USEDEP}]
 	>=net-analyzer/scapy-2.6.1[${PYTHON_USEDEP}]
 	~dev-python/securetar-2024.11.0[${PYTHON_USEDEP}]
-	~dev-python/sqlalchemy-2.0.36[${PYTHON_USEDEP}]
+	>=dev-python/sqlalchemy-2.0[${PYTHON_USEDEP}]
+	<dev-python/sqlalchemy-2.1[${PYTHON_USEDEP}]
 	$(python_gen_cond_dep '~dev-python/standard-aifc-3.13.0[${PYTHON_USEDEP}]' python3_13)
 	$(python_gen_cond_dep '~dev-python/standard-telnetlib-3.13.0[${PYTHON_USEDEP}]' python3_13)
 	>=dev-python/tuf-4.0.0[${PYTHON_USEDEP}]
