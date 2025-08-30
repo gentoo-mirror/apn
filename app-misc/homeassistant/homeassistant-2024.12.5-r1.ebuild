@@ -129,7 +129,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/PyTurboJPEG-1.7.5[${PYTHON_USEDEP}]
 	~dev-python/pyudev-0.24.1[${PYTHON_USEDEP}]
 	~dev-python/pyyaml-6.0.2[${PYTHON_USEDEP}]
-	~dev-python/requests-2.32.3[${PYTHON_USEDEP}]
+	>=dev-python/requests-2.32.3[${PYTHON_USEDEP}]
 	~dev-python/rpds-py-0.21.0[${PYTHON_USEDEP}]
 	>=net-analyzer/scapy-2.6.1[${PYTHON_USEDEP}]
 	~dev-python/securetar-2024.11.0[${PYTHON_USEDEP}]
