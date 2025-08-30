@@ -88,7 +88,7 @@ RDEPEND="${RDEPEND}
 	~dev-python/grpcio-reflection-1.67.1[${PYTHON_USEDEP}]
 	~dev-python/grpcio-status-1.67.1[${PYTHON_USEDEP}]
 	~dev-python/grpcio-1.67.1[${PYTHON_USEDEP}]
-	~dev-python/h11-0.14.0[${PYTHON_USEDEP}]
+	dev-python/h11[${PYTHON_USEDEP}]
 	~dev-python/ha-ffmpeg-3.2.2[${PYTHON_USEDEP}]
 	~dev-python/habluetooth-3.6.0[${PYTHON_USEDEP}]
 	~dev-python/hass-nabucasa-0.86.0[${PYTHON_USEDEP}]
